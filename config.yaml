@@ -1,0 +1,27 @@
+monitoring:
+  watch_path: "/var/logs/app_log/"
+  file_pattern: "*.log"
+  fields:
+    - raw_field: "original_timestamp"
+      map_to: "log_time"
+    - raw_field: "original_ip"
+      map_to: "client_ip"
+    - raw_field: "status_code"
+      map_to: "response_status"
+    - raw_field: "response_size"
+      map_to: "size"
+
+database:
+  type: "postgres"
+  host: "localhost"
+  port: 5432
+  user: "agent_user"
+  password: "agent_password"
+  db_name: "log_analysis"
+  table: "converted_logs"
+
+performance:
+  read_interval: 2
+  batch_size: 1000
+  max_queue_length: 5000
+  enable_async_insert: true
