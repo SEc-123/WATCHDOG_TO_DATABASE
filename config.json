@@ -1,0 +1,34 @@
+{
+    "database": {
+        "host": "your_db_host",
+        "port": 3306,
+        "user": "your_username",
+        "password": "your_password",
+        "database": "your_database"
+    },
+    "watch_directory": "/path/to/your/logs",
+    "recursive": true,
+    "log_files": [
+        {
+            "file_pattern": "app\\.log",
+            "table": "app_logs",
+            "field_mappings": [
+                {
+                    "source_field": "timestamp",
+                    "target_field": "log_time",
+                    "type": "datetime"
+                },
+                {
+                    "source_field": "level",
+                    "target_field": "severity",
+                    "type": "string"
+                },
+                {
+                    "source_field": "message",
+                    "target_field": "content",
+                    "type": "string"
+                }
+            ]
+        }
+    ]
+}
